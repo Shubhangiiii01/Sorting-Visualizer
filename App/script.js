@@ -1,3 +1,6 @@
+//import d3.js
+import { updateArrayVisualization, swap, highlightBars, highlightKey, resetColor } from 'App/d3.js';
+
 // Global variables 
 let bars = [];
 let arraySize = 50; 
@@ -320,23 +323,27 @@ function reset() {
     generateBars();
 }
 
-// Your existing generateBars function
+// generateBars function
 function generateBars(customArray) {
-    const container = document.getElementById("container");
+    const container = d3.select("#container");
 
-    // Use customArray if provided, otherwise generate a random array
+    // To use customArray if provided, otherwise generate a random array
     bars = customArray || generateRandomArray(arraySize);
 
     // Create bars in the container
-    for (const barHeight of bars) {
-        const bar = document.createElement("div");
-        bar.style.height = `${barHeight * 4}px`; 
-        container.appendChild(bar);
-    }
+    container.selectAll('div')
+        .data(bars)
+        .enter().append('div')
+        .style('width', '100%')
+        .style('height', d => `${d * 4}px`)
+        .style('background-color', '#87CEEB')
+        .style('margin', '0 1px')
+        .style('transition', 'background-color 0.3s');
 
     // Save the initial state
     saveState();
 }
+
 
 // Function to generate a random array
 function generateRandomArray(size) {
@@ -366,34 +373,46 @@ function restoreState() {
     }
 }
 
-// Utility function to highlight bars being compared
+// to highlight bars being compared
 function highlightBars(index1, index2) {
-    const barsElements = document.querySelectorAll("#container div");
-    barsElements[index1].style.backgroundColor = "#FFD700"; 
-    barsElements[index2].style.backgroundColor = "#FFD700";
+    const barsElements = d3.selectAll("#container div");
+    barsElements.filter((d, i) => i === index1 || i === index2)
+        .style("background-color", "#FFD700");
 }
 
-// Utility function to highlight the key element for Insertion Sort
+// to highlight the key element for Insertion Sort
 function highlightKey(index) {
-    const barsElements = document.querySelectorAll("#container div");
-    barsElements[index].style.backgroundColor = "#66CDAA"; 
+    const barsElements = d3.selectAll("#container div");
+    barsElements.filter((d, i) => i === index)
+        .style("background-color", "#66CDAA");
 }
 
-// Utility function to reset the color of bars
+// to reset the color of bars
 function resetColor(index1, index2) {
-    const barsElements = document.querySelectorAll("#container div");
+    const barsElements = d3.selectAll("#container div");
     if (index1 >= 0) {
-        barsElements[index1].style.backgroundColor = "#87CEEB"; 
+        barsElements.filter((d, i) => i === index1)
+            .style("background-color", "#87CEEB");
     }
     if (index2 >= 0) {
-        barsElements[index2].style.backgroundColor = "#87CEEB";
+        barsElements.filter((d, i) => i === index2)
+            .style("background-color", "#87CEEB");
     }
 }
 
-// Utility function to swap two bars
+// to swap two bars
 function swap(index1, index2) {
     const temp = bars[index1];
     bars[index1] = bars[index2];
     bars[index2] = temp;
+
+    // to transition the swap visually
+    const barsElements = d3.selectAll("#container div");
+    barsElements.transition().duration(300)
+        .attr("height", d => `${d * 4}px`)
+        .style("background-color", d => d === bars[index1] || d === bars[index2] ? "#FFD700" : "#87CEEB")
+        .on("end", function () {
+            d3.select(this).style("background-color", "#87CEEB");
+        });
 }
 
