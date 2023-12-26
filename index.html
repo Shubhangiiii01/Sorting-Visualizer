@@ -38,6 +38,22 @@
                 <input id="customArray" type="text" placeholder="Enter comma-separated values">
                 <button onclick="setCustomArray()">Apply Custom Array</button>
             </div>
+            <!-- Soundtrack options-->
+            <div class="soundtrack">
+                <label for="soundtrack">Soundtrack:</label>
+                <select id="soundtrack" onchange="changeSoundtrack()">
+                    <option value="default">Default</option>
+                    <option value="jazz">Jazz</option>
+                    <option value="classical">Classical</option>
+                    <option value="electronic">Electronic</option>
+                    <option value="rock">Rock</option>
+                    <option value="ambient">Ambient</option>
+                    <option value="hiphop">Hip Hop</option>
+                    <option value="pop">Pop</option>
+                    <option value="reggae">Reggae</option>
+                    <option value="country">Country</option>
+                </select>
+            </div>
             <!--Sorting Algorithm Buttons-->
             <div class="sorts">
                 <input type="button" onclick="SelectionSort()" value="Selection Sort">
@@ -49,6 +65,10 @@
             </div>
             <!--Reset button-->
             <button onclick="reset()">Generate New Array</button>
+             <!--Rewind button-->
+            <button onclick="rewind()">Rewind</button>
+             <!--Replay button-->
+            <button onclick="replay()">Replay</button>
         </div>
     </div>
     <!--Container for array visualization-->
