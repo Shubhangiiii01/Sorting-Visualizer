@@ -4,7 +4,8 @@ Explore and understand sorting algorithms through this interactive web-based Sor
 How to use:
 - Clone the repository.
 - Open index.html in your browser.
-- Generate a new array and select a sorting algorithm.
+- Write a custom array input and select a sorting algorithm.
+- Use the functionalities for a better user experience.
 - Experience the visualization in real time.
 
 Features:
