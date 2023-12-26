@@ -48,16 +48,16 @@ function changeSoundtrack() {
 
     // Map selected soundtrack to corresponding audio file
     const soundtrackMap = {
-        "default": "path/to/default.mp3",
-        "jazz": "path/to/jazz.mp3",
-        "classical": "path/to/classical.mp3",
-        "electronic": "path/to/electronic.mp3",
-        "rock": "path/to/rock.mp3",
-        "ambient": "path/to/ambient.mp3",
-        "hiphop": "path/to/hiphop.mp3",
-        "pop": "path/to/pop.mp3",
-        "reggae": "path/to/reggae.mp3",
-        "country": "path/to/country.mp3"
+        "default": "Soundtrack/instrumental_new.mp3",
+        "jazz": "Soundtrack/jazz_tone.mp3",
+        "classical": "Soundtrack/elise.mp3",
+        "electronic": "Soundtrack/electronics.mp3",
+        "rock": "Soundtrack/wholelotta.mp3",
+        "ambient": "Soundtrack/ambiental.mp3",
+        "hiphop": "Soundtrack/montral_fort_minor.mp3",
+        "pop": "Soundtrack/invincible_beat.mp3",
+        "reggae": "Soundtrack/reggae.mp3",
+        "country": "Soundtrack/fancy_like.mp3"
     };
 
     // Set the source of the audio element based on the selected soundtrack
